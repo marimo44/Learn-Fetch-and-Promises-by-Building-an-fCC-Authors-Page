@@ -5,13 +5,14 @@ let startingIndex = 0;
 let endingIndex = 8;
 let authorDataArr = [];
 
-fetch('https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json')
-  .then((res) => res.json())
-  .then((data) => {
+//asynchronous operation
+fetch('https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json')  //used to make network requests to retrieve resources | returns a promise
+  .then((res) => res.json())  //res for response | // 'response' is the value of the promise when successful which is accessed by .then() method |  takes the raw JSON text from the response body and parses it into a JavaScript object or array that we can work with in our code.
+  .then((data) => {   //receives the parsed JavaScript data, which we can now use directly in our code.
     authorDataArr = data;
     displayAuthors(authorDataArr.slice(startingIndex, endingIndex));  
   })
-  .catch((err) => {
+  .catch((err) => {   //runs when promise fails/rejected
    authorContainer.innerHTML = '<p class="error-msg">There was an error loading the authors</p>';
   });
 
